@@ -1,20 +1,17 @@
-package com.mapsiz.dev.community.Provider;
+package com.mapsiz.dev.community.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.mapsiz.dev.community.DTO.AccessTokenDTO;
 import com.mapsiz.dev.community.DTO.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * @Author: DamageeZ
  * @Create: 05-31-2021 17:27
  */
 @Component
-public class GithubProvider {
+public class GithubService {
     public String getAccessToken(AccessTokenDTO accessTokenDTO) {
         MediaType mediaType = MediaType.get("application/json;charset=utf-8");
         OkHttpClient client = new OkHttpClient();
