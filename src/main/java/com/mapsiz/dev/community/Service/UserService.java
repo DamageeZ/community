@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public void createUser(GithubUser githubUser) {
+    public String createUser(GithubUser githubUser) {
         User user = new User();
         user.setToken(UUID.randomUUID().toString());
         user.setName(githubUser.getName());
@@ -25,6 +25,12 @@ public class UserService {
         user.setGmtModified(user.getGmtCreate());
         user.setAccountId(String.valueOf(githubUser.getId()));
         userMapper.insert(user);
+        return user.getToken();
+
     }
 
+    public User findByToken(String token) {
+        User user = userMapper.findByToken(token);
+        return user;
+    }
 }
