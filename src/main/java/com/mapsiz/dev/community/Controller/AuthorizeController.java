@@ -46,13 +46,12 @@ public class AuthorizeController {
         accessTokenDTO.setClient_id(clientId);
         String accessToken = githubService.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubService.getUser(accessToken);
-        if (githubUser != null) {
+        if (githubUser != null && githubUser.getId()!= null) {
             String token = userService.createUser(githubUser);
-            response.addCookie(new Cookie("token",token));
+            response.addCookie(new Cookie("token", token));
             System.out.println(githubUser.getName());
             return "redirect:/";
         } else {
-
         }
 
         return "index";

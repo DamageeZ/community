@@ -26,7 +26,6 @@ public class UserService {
         user.setAccountId(String.valueOf(githubUser.getId()));
         userMapper.insert(user);
         return user.getToken();
-
     }
 
     public User findByToken(String token) {
