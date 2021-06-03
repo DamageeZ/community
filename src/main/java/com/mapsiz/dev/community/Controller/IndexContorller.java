@@ -5,11 +5,13 @@ import com.mapsiz.dev.community.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
 
 /**
  * @Author: DamageeZ
@@ -22,19 +24,28 @@ public class IndexContorller {
     private UserService userService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request,
+                        Model model) {
         Cookie[] cookies = request.getCookies();
+        User user = new User();
+        Random r = new Random();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
-                    User user = userService.findByToken(token);
+                    user = userService.findByToken(token);
                     if (user != null) {
                         request.getSession().setAttribute("user", user);
                     }
                     break;
                 }
             }
+        }
+        if (user == null) {
+            byte[] nbytes = new byte[5];
+            r.nextBytes(nbytes);
+            model.addAttribute("state", DigestUtils.md5DigestAsHex(nbytes));
+            request.getSession().setAttribute("state",DigestUtils.md5DigestAsHex(nbytes));
         }
         return "index";
     }

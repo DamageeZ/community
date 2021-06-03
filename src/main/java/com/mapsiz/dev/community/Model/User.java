@@ -1,10 +1,12 @@
 package com.mapsiz.dev.community.Model;
 
+import java.io.Serializable;
+
 /**
  * @Author: DamageeZ
  * @Create: 06-01-2021 20:04
  */
-public class User {
+public class User implements Serializable {
     private int id;
     private String name;
     private String accountId;
