@@ -71,9 +71,16 @@
                     <input type="text" class="form-control" id="tag" placeholder="Use a comma to isolate tags" name="tag">
                 </div>
 
-                <button type="submit" class="btn btn-success btn-publish">Publish</button>
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}"></div>
+                        <button type="submit" class="btn btn-success btn-publish col-md-12 col-sm-12 col-xs-12">Publish</button>
+                    </div>
+                </div>
+
             </form>
         </div>
+        <hr>
         <div class="col-lg-3">
             <h3>Guidance</h3>
         </div>
