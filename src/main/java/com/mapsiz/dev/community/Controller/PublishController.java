@@ -1,6 +1,5 @@
 package com.mapsiz.dev.community.Controller;
 
-import com.mapsiz.dev.community.Model.Question;
 import com.mapsiz.dev.community.Model.User;
 import com.mapsiz.dev.community.Service.QuestionService;
 import com.mapsiz.dev.community.Service.UserService;
@@ -48,8 +47,25 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("tag") String tag,
                             @RequestParam("description") String description,
-                            HttpServletRequest request) {
+                            HttpServletRequest request,
+                            Model model) {
+        if(title == null || title.equals("")) {
+            model.addAttribute("error","No Title");
+            return "publish";
+        }
+        if(tag == null || tag.equals("")) {
+            model.addAttribute("error","No tag");
+            return "publish";
+        }
+        if(description == null || description.equals("")) {
+            model.addAttribute("error","No description");
+            return "publish";
+        }
         User user = (User) request.getSession().getAttribute("user");
+        if(user.getAccountId() == null) {
+            model.addAttribute("error","Ooops, UserInfo is missed. Please Login again");
+            return "index";
+        }
         questionService.publishQuestion(tag,title,description,user);
         return "redirect:/happy?reason=Publish";
     }
