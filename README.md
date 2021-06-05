@@ -5,6 +5,12 @@ _______________________
 - **Springboot**
 - Maven
 - OkHttp
+
+### ~~Lombok~~
+1、损害代码可读性和提高调试难度 
+
+2、对初学者并不友好
+
 ## 已实现功能
 - Github OAuth登录:Authorization Http Header
 - Cookies登录状态保持
@@ -17,6 +23,4 @@ _______________________
 - Cookie过期后重新登陆时更新token 而不是新建user
 - 头像
 ## 正在实现功能
-
-
-
+- 首页问题展示列表
