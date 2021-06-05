@@ -41,12 +41,12 @@ public class IndexContorller {
                 }
             }
         }
-        if (user == null) {
-            byte[] nbytes = new byte[5];
-            r.nextBytes(nbytes);
-            model.addAttribute("state", DigestUtils.md5DigestAsHex(nbytes));
-            request.getSession().setAttribute("state",DigestUtils.md5DigestAsHex(nbytes));
-        }
+        byte[] nbytes = new byte[5];
+        r.nextBytes(nbytes);
+        model.addAttribute("state", DigestUtils.md5DigestAsHex(nbytes));
+        request.getSession().setAttribute("state", DigestUtils.md5DigestAsHex(nbytes));
         return "index";
     }
+
+
 }

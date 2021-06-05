@@ -9,7 +9,7 @@
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="http://libs.baidu.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="/script/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -37,9 +37,10 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
-                        <li><a href="#">登出</a></li>
+                        <li><a href="/exit">登出</a></li>
                     </ul>
                 </li>
+                <li th:if="${session.user != null}"><a href="/exit">Logout</a></li>
                 <li th:if="${session.user == null}"><a th:href="'https://gitee.com/oauth/authorize?client_id=66396210d0704d341b928d8d9bbd8945f21bb839ac57f07ed858bcdf3a386a37&redirect_uri=http://localhost:8270/GECallback&response_type=code&scope=user_info&state='+ ${state}">Gitee登录</a></li>
                 <li th:if="${session.user == null}"><a th:href="'https://github.com/login/oauth/authorize?client_id=d5ee626b65a27b26396d&redirect_uri=http://localhost:8270/GHCallback&scope=user&state='+${state}">Github登录</a></li>
             </ul>

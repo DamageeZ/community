@@ -24,12 +24,21 @@ public class UserService {
         user.setGmtCreate(System.currentTimeMillis());
         user.setGmtModified(user.getGmtCreate());
         user.setAccountId(String.valueOf(githubUser.getId()));
-        userMapper.insert(user);
+        if (userMapper.findByAccountId(user.getAccountId()) == null) {
+            userMapper.insert(user);
+        } else {
+            userMapper.updateTokenById(user.getAccountId(),user.getToken(),System.currentTimeMillis());
+        }
         return user.getToken();
     }
 
     public User findByToken(String token) {
         User user = userMapper.findByToken(token);
         return user;
+    }
+
+    public String updateTokenById(String token,String id) {
+        userMapper.updateTokenById(id,token,System.currentTimeMillis());
+        return token;
     }
 }

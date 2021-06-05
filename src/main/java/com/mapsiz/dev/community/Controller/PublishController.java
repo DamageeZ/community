@@ -49,24 +49,30 @@ public class PublishController {
                             @RequestParam("description") String description,
                             HttpServletRequest request,
                             Model model) {
-        if(title == null || title.equals("")) {
-            model.addAttribute("error","No Title");
+
+        model.addAttribute("title", title);
+        model.addAttribute("tag", tag);
+        model.addAttribute("description", description);
+
+        if (title == null || title.equals("")) {
+            model.addAttribute("error", "No Title");
             return "publish";
         }
-        if(tag == null || tag.equals("")) {
-            model.addAttribute("error","No tag");
+        if (tag == null || tag.equals("")) {
+            model.addAttribute("error", "No tag");
             return "publish";
         }
-        if(description == null || description.equals("")) {
-            model.addAttribute("error","No description");
+        if (description == null || description.equals("")) {
+            model.addAttribute("error", "No description");
             return "publish";
         }
         User user = (User) request.getSession().getAttribute("user");
-        if(user.getAccountId() == null) {
-            model.addAttribute("error","Ooops, UserInfo is missed. Please Login again");
+        if (user.getAccountId() == null) {
+            model.addAttribute("error", "Ooops, UserInfo is missed. Please Login again");
             return "index";
         }
-        questionService.publishQuestion(tag,title,description,user);
+
+        questionService.publishQuestion(tag, title, description, user);
         return "redirect:/happy?reason=Publish";
     }
 }

@@ -2,6 +2,7 @@ package com.mapsiz.dev.community.Controller;
 
 import com.mapsiz.dev.community.DTO.AccessTokenDTO;
 import com.mapsiz.dev.community.DTO.GithubUser;
+import com.mapsiz.dev.community.Model.User;
 import com.mapsiz.dev.community.Service.GiteeService;
 import com.mapsiz.dev.community.Service.GithubService;
 import com.mapsiz.dev.community.Service.UserService;
@@ -44,7 +45,7 @@ public class AuthorizeController {
     @Autowired
     private GiteeService giteeService;
 
-    @GetMapping("/GHCallback")
+    @GetMapping("/GHCallback")                                                          //Github返回路径
     public String GHCallback(@RequestParam(name = "code") String code,
                              @RequestParam(name = "state") String state,
                              HttpServletResponse response,
@@ -68,7 +69,7 @@ public class AuthorizeController {
         return "index";
     }
 
-    @GetMapping("/GECallback")
+    @GetMapping("/GECallback")                                                          //Gitee返回路径
     public String GECallback(@RequestParam(name = "code") String code,
                              @RequestParam(name = "state") String state,
                              HttpServletResponse response,
@@ -93,5 +94,13 @@ public class AuthorizeController {
         }
 
         return "index";
+    }
+
+    @GetMapping("/exit")
+    public String exit(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        userService.updateTokenById("",user.getAccountId());
+        request.getSession().invalidate();
+        return "redirect:/";
     }
 }
