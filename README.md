@@ -15,7 +15,7 @@ _______________________
 - 退出登录 session.invalidate
 - Gitee OAuth登录
 - Cookie过期后重新登陆时更新token 而不是新建user
-
+- 头像
 ## 正在实现功能
 
 

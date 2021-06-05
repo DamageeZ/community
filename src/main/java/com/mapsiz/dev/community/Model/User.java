@@ -13,6 +13,15 @@ public class User implements Serializable {
     private String token;
     private Long gmtCreate;
     private Long gmtModified;
+    private String avatarUrl;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public int getId() {
         return id;

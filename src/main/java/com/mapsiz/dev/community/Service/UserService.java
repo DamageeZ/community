@@ -24,6 +24,7 @@ public class UserService {
         user.setGmtCreate(System.currentTimeMillis());
         user.setGmtModified(user.getGmtCreate());
         user.setAccountId(String.valueOf(githubUser.getId()));
+        user.setAvatarUrl(githubUser.getAvatar_url());
         if (userMapper.findByAccountId(user.getAccountId()) == null) {
             userMapper.insert(user);
         } else {
