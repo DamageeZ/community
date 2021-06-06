@@ -2,9 +2,11 @@
     margin: 60px;
     background-color: white;
 }
+
 .body {
     background: #efefef;
 }
+
 .btn-publish {
     float: right;
     margin-bottom: 15px;
@@ -14,8 +16,15 @@
     width: 46px;
     height: 46px;
 }
+
 .ques-info {
     font-size: 12px;
     font-weight: normal;
     color: #999;
+}
+
+.avatar_top {
+    width: 40px;
+    height: 40px;
+    margin-top: 4px;
 }

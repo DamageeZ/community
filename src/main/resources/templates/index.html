@@ -54,6 +54,9 @@
                 <li th:if="${session.user == null}"><a
                         th:href="'https://github.com/login/oauth/authorize?client_id=d5ee626b65a27b26396d&redirect_uri=http://localhost:8270/GHCallback&scope=user&state='+${state}">Github登录</a>
                 </li>
+                <li href="#" th:if="${session.user != null}">
+                    <img class="img-circle avatar_top" th:src="${session.user.getAvatarUrl}">
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -74,7 +77,9 @@
                     <span th:text="${question.description}"></span>
                     <span class="ques-info">
                         <span th:text="${question.commentCount}"></span> comment | <span
-                            th:text="${question.viewCount}"></span> views | <span th:text="${question.likeCount}"></span> likes | <span th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd HH:mm:ss')}"></span>
+                            th:text="${question.viewCount}"></span> views | <span
+                            th:text="${question.likeCount}"></span> likes | <span
+                            th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd HH:mm:ss')}"></span>
                         </span>
                 </div>
                 <hr>
