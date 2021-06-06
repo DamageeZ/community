@@ -9,3 +9,13 @@
     float: right;
     margin-bottom: 15px;
 }
+
+.avatar {
+    width: 46px;
+    height: 46px;
+}
+.ques-info {
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
