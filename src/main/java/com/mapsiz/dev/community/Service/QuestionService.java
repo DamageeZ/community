@@ -43,6 +43,9 @@ public class QuestionService {
             User user = userMapper.findByAccountId(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question, questionDTO);
+            if (questionDTO.getDescription().length()>=70) {
+                questionDTO.setDescription(question.getDescription().substring(0,70)+"...");
+            }
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
